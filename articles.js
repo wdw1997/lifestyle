@@ -96,3 +96,25 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 });
+{
+    id: 13,
+    title: "The High-Priced Kibble Trap: How to Feed Your Dog Like Royalty on a Budget",
+    category: "Pet Care",
+    date: "Nutrition Guide",
+    summary: "Boutique raw pet food subscriptions charge $250 a month. Veterinary nutritionists reveal the smart fresh-topper method that saves 70%.",
+    image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=800&q=80",
+    url: "post-13.html",
+    editor: false,
+    trending: false
+  },
+  {
+    id: 14,
+    title: "French Pharmacy Secrets: 4 Cult Skincare Staples Under $20 Dermatologists Actually Use",
+    category: "Beauty",
+    date: "Cult Favorite",
+    summary: "Paris pharmacy classics like multi-purpose barrier repair creams and soothing mists outperform $120 department store luxury products.",
+    image: "https://images.unsplash.com/photo-1608248597359-00966f7f2590?auto=format&fit=crop&w=800&q=80",
+    url: "post-14.html",
+    editor: false,
+    trending: false
+  }
