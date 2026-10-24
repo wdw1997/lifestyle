@@ -1,0 +1,103 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Practical ideas for earning more, spending wisely, and feeling more confident about money.">
+  <title>Everyday Penny — Make More of Your Money</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="top-strip"><span>SMARTER MONEY. MORE ROOM TO LIVE.</span><span class="top-links">About · Contact · Newsletter</span></div>
+  <header class="site-header">
+    <a class="brand" href="#" aria-label="Everyday Penny home">
+      <span class="brand-mark">e</span>
+      <span class="brand-name"><b>EVERYDAY</b><span>PENNY</span></span>
+    </a>
+    <div class="header-actions"><a href="#newsletter">NEWSLETTER</a><a class="header-button" href="#newsletter">GET MONEY TIPS</a></div>
+  </header>
+  <nav class="main-nav" aria-label="Main navigation">
+    <button class="mobile-menu" id="mobileMenu" aria-expanded="false">☰ <span>Menu</span></button>
+    <div class="nav-items" id="navItems">
+      <a href="#make-money">Make Money</a><a href="#save-money">Save Money</a><a href="#budgeting">Budgeting</a>
+      <a href="#debt">Debt</a><a href="#credit">Credit</a><a href="#banking">Banking</a><a href="#investing">Investing</a>
+      <a href="#guides">Guides</a>
+    </div>
+    <form class="search" id="searchForm" role="search"><input id="searchInput" type="search" placeholder="Search articles…" aria-label="Search articles"><button aria-label="Search">⌕</button></form>
+  </nav>
+
+  <main class="page-wrap">
+    <section class="hero-grid">
+      <article class="hero-feature">
+        <a class="hero-image image-placeholder img-family" href="#featured" aria-label="Featured article image"><span>FEATURED STORY</span></a>
+        <div class="hero-copy">
+          <span class="eyebrow">MONEY & EVERYDAY LIFE</span>
+          <h1><a href="#featured" id="heroTitle">Simple Ways to Make Your Money Go Further</a></h1>
+          <p id="heroSummary">Practical, approachable ideas to help you feel more in control of your finances — one small step at a time.</p>
+          <div class="byline">THE EVERYDAY PENNY EDITORS <span>·</span> 6 MIN READ</div>
+        </div>
+      </article>
+      <aside class="sidebar-promo">
+        <div class="promo-icon">✦</div><p class="eyebrow">THE WEEKLY PENNY</p>
+        <h2>Good money habits start here.</h2>
+        <p>Get useful tips, fresh ideas, and helpful reads delivered to your inbox.</p>
+        <a class="purple-button" href="#newsletter">JOIN THE NEWSLETTER <span>→</span></a>
+        <small>No noise. Just useful ideas.</small>
+      </aside>
+    </section>
+
+    <section class="content-layout">
+      <div class="main-column">
+        <div class="section-heading"><h2>Editor's Picks</h2><span></span></div>
+        <div class="editors-grid" id="editorsGrid"></div>
+        <div class="section-heading section-heading-left"><h2>Explore by Topic</h2><span></span></div>
+        <div class="topic-grid">
+          <a class="topic-card" href="#make-money"><span class="topic-icon">↗</span><b>MAKE MONEY</b><small>Side hustles, jobs & earning ideas</small></a>
+          <a class="topic-card" href="#save-money"><span class="topic-icon">⌁</span><b>SAVE MONEY</b><small>Everyday savings that add up</small></a>
+          <a class="topic-card" href="#budgeting"><span class="topic-icon">▤</span><b>BUDGETING</b><small>Build a plan that works for you</small></a>
+          <a class="topic-card" href="#debt"><span class="topic-icon">◎</span><b>DEBT & CREDIT</b><small>Understand your options</small></a>
+        </div>
+      </div>
+      <aside class="trending-column">
+        <div class="section-heading"><h2>Trending Reads</h2><span></span></div>
+        <div id="trendingList"></div>
+        <div class="newsletter-card" id="newsletter">
+          <span class="eyebrow">A LITTLE GOOD NEWS</span><h3>Make money feel less complicated.</h3>
+          <p>Sign up for the Everyday Penny newsletter.</p>
+          <form id="newsletterForm"><input type="email" placeholder="Your email address" required aria-label="Your email address"><button class="purple-button">SIGN ME UP →</button></form>
+          <small class="form-message" id="formMessage">By subscribing, you agree to receive email updates. Unsubscribe anytime.</small>
+        </div>
+      </aside>
+    </section>
+
+    <section class="category-section" id="make-money">
+      <div class="category-title"><h2>Make Money</h2><a href="#all-articles">VIEW ALL →</a></div>
+      <div class="category-feature-row" id="makeMoneyGrid"></div>
+    </section>
+    <section class="category-section" id="save-money">
+      <div class="category-title"><h2>Save Money</h2><a href="#all-articles">VIEW ALL →</a></div>
+      <div class="category-feature-row" id="saveMoneyGrid"></div>
+    </section>
+    <section class="category-section" id="budgeting">
+      <div class="category-title"><h2>Budgeting & Guides</h2><a href="#all-articles">VIEW ALL →</a></div>
+      <div class="category-feature-row" id="guidesGrid"></div>
+    </section>
+
+    <section class="all-articles" id="all-articles">
+      <div class="category-title"><h2>Latest Articles</h2><span class="latest-note">New ideas for your money life</span></div>
+      <div class="latest-grid" id="latestGrid"></div>
+      <button class="load-more" id="loadMore">LOAD MORE ARTICLES</button>
+      <p class="empty-state" id="emptyState" hidden>No articles match your search. Try another keyword.</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="#"><span class="brand-mark">e</span><span class="brand-name"><b>EVERYDAY</b><span>PENNY</span></span></a>
+    <p>Helpful money ideas for real life.</p>
+    <div class="footer-links"><a href="#about">About</a><a href="#contact">Contact</a><a href="#privacy">Privacy Policy</a><a href="#disclaimer">Disclaimer</a></div>
+    <small>© 2026 Everyday Penny. For educational purposes only.</small>
+  </footer>
+  <script src="articles.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
