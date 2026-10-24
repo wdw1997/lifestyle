@@ -1,18 +1,68 @@
-/*
-  EDIT THIS FILE when you publish a new article.
-  Add a new object to the ARTICLES array. Replace imageClass with one of:
-  "img-family", "img-work", "img-home", "img-budget", "img-shopping", "img-coffee".
-  Later, you can replace imageClass with an image URL and update script.js to render it.
-*/
 const ARTICLES = [
-  {id:1,title:"Simple Ways to Make Your Money Go Further",category:"Save Money",date:"October 22, 2026",summary:"Small, realistic changes that can make your everyday budget feel more manageable.",imageClass:"img-family",featured:true,editor:true,trending:true},
-  {id:2,title:"Flexible Side Hustles to Explore in Your Spare Time",category:"Make Money",date:"October 20, 2026",summary:"A beginner-friendly look at different ways people earn extra income.",imageClass:"img-work",editor:true,trending:true},
-  {id:3,title:"A Simple Weekly Budget You Can Actually Stick To",category:"Budgeting",date:"October 18, 2026",summary:"Create a money routine that is clear, flexible, and easy to revisit.",imageClass:"img-budget",editor:true},
-  {id:4,title:"How to Shop More Intentionally and Spend Less",category:"Save Money",date:"October 16, 2026",summary:"A few thoughtful habits can help you pause before impulse purchases.",imageClass:"img-shopping",editor:true},
-  {id:5,title:"What to Know Before Starting a Side Project",category:"Make Money",date:"October 14, 2026",summary:"Questions to ask yourself before spending time or money on a new idea.",imageClass:"img-home",trending:true},
-  {id:6,title:"Build a Starter Emergency Fund, One Step at a Time",category:"Budgeting",date:"October 12, 2026",summary:"A practical framework for starting small and building consistency.",imageClass:"img-coffee"},
-  {id:7,title:"Everyday Expenses Worth Reviewing This Month",category:"Save Money",date:"October 10, 2026",summary:"A simple checklist for reviewing recurring costs and subscriptions.",imageClass:"img-budget"},
-  {id:8,title:"Credit Basics: Questions to Ask Before You Borrow",category:"Credit",date:"October 8, 2026",summary:"Understand common borrowing terms and compare your options carefully.",imageClass:"img-work"},
-  {id:9,title:"A Calm, No-Shame Approach to Money Goals",category:"Guides",date:"October 6, 2026",summary:"Make your next money goal specific, realistic, and easier to maintain.",imageClass:"img-family"},
-  {id:10,title:"Plan Ahead for Seasonal Spending",category:"Budgeting",date:"October 4, 2026",summary:"Prepare for occasional expenses without putting every other goal on hold.",imageClass:"img-shopping"}
+  {
+    id: 1,
+    title: "The $7 Latte Trap: How I Saved $1,800 a Year Making Gourmet Coffee at Home",
+    category: "Save Money",
+    date: "October 24, 2026",
+    summary: "Skipping Starbucks won't buy you a house, but ditching the daily $7 drive-thru habit can fund your dream vacation. Here is the realistic math.",
+    image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80",
+    url: "post-1.html",
+    editor: true,
+    trending: true
+  },
+  {
+    id: 2,
+    title: "Meal Kits vs. Supermarket Groceries: The Real Math for Busy People",
+    category: "Save Money",
+    date: "October 22, 2026",
+    summary: "With inflation hitting US & European supermarkets, are subscription meal boxes like HelloFresh actually cheaper than grocery shopping?",
+    image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80",
+    url: "post-1.html",
+    editor: true,
+    trending: false
+  },
+  {
+    id: 3,
+    title: "5 Genius Work-From-Home Upgrades on Amazon Under $50",
+    category: "Make Money",
+    date: "October 20, 2026",
+    summary: "You don't need a $1,000 ergonomic setup. These 5 highly-rated productivity essentials will boost your focus without draining your wallet.",
+    image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=800&q=80",
+    url: "post-1.html",
+    editor: true,
+    trending: true
+  },
+  {
+    id: 4,
+    title: "How to Build a $1,000 Starter Emergency Fund in 60 Days",
+    category: "Budgeting",
+    date: "October 18, 2026",
+    summary: "Unexpected car repairs or medical bills can derail your budget. Follow this zero-fluff, step-by-step cash-saving blueprint.",
+    image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=800&q=80",
+    url: "post-1.html",
+    editor: true,
+    trending: false
+  },
+  {
+    id: 5,
+    title: "High-Yield Savings Accounts: Stop Leaving Free Interest on the Table",
+    category: "Banking",
+    date: "October 16, 2026",
+    summary: "Traditional big banks pay 0.01% interest. Top modern online accounts pay over 4.5% APY with full FDIC insurance.",
+    image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80",
+    url: "post-1.html",
+    editor: false,
+    trending: true
+  },
+  {
+    id: 6,
+    title: "The 30-Day No-Spend Challenge: Reset Your Relationship with Money",
+    category: "Save Money",
+    date: "October 14, 2026",
+    summary: "A practical guide to cutting out non-essential spending for one month. See how our readers saved an average of $650.",
+    image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80",
+    url: "post-1.html",
+    editor: false,
+    trending: false
+  }
 ];
