@@ -1,58 +1,72 @@
-const $ = (selector) => document.querySelector(selector);
-const latestGrid = $("#latestGrid");
-let visibleCount = 8;
-let currentArticles = [...ARTICLES];
+document.addEventListener("DOMContentLoaded", () => {
+  // 1. 渲染顶部头条（Featured Story）
+  const hero = ARTICLES[0];
+  if (hero) {
+    const heroTitle = document.getElementById("heroTitle");
+    const heroSummary = document.getElementById("heroSummary");
+    const heroImage = document.querySelector(".hero-image");
+    
+    if (heroTitle) {
+      heroTitle.textContent = hero.title;
+      heroTitle.href = hero.url;
+    }
+    if (heroSummary) heroSummary.textContent = hero.summary;
+    if (heroImage) {
+      heroImage.href = hero.url;
+      heroImage.style.background = `url('${hero.image}') center/cover no-repeat`;
+    }
+  }
 
-function imageBlock(article, extraClass="") {
-  return `<div class="image-placeholder card-image ${article.imageClass || "img-home"} ${extraClass}" aria-hidden="true"><span>${escapeHTML(article.category || "MONEY TIPS")}</span></div>`;
-}
-function escapeHTML(value="") {
-  return String(value).replace(/[&<>"']/g, ch => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
-}
-function articleCard(article, className="article-card") {
-  return `<article class="${className}">${imageBlock(article)}<h3 class="card-title"><a href="#article-${article.id}" onclick="showArticleNotice(event, ${article.id})">${escapeHTML(article.title)}</a></h3><div class="card-meta">${escapeHTML(article.date || "COMING SOON")} · ${escapeHTML(article.category)}</div></article>`;
-}
-function render() {
-  const editors = currentArticles.filter(a=>a.editor).slice(0,4);
-  $("#editorsGrid").innerHTML = editors.map(a=>articleCard(a)).join("");
-  $("#trendingList").innerHTML = currentArticles.filter(a=>a.trending).slice(0,4).map(a=>`<article class="trending-item"><div class="image-placeholder trending-thumb ${a.imageClass || "img-home"}"></div><div><h3><a href="#article-${a.id}" onclick="showArticleNotice(event, ${a.id})">${escapeHTML(a.title)}</a></h3><small>${escapeHTML(a.date || "COMING SOON")}</small></div></article>`).join("");
-  $("#makeMoneyGrid").innerHTML = currentArticles.filter(a=>a.category==="Make Money").slice(0,3).map(a=>articleCard(a,"article-card category-card")).join("");
-  $("#saveMoneyGrid").innerHTML = currentArticles.filter(a=>a.category==="Save Money").slice(0,3).map(a=>articleCard(a,"article-card category-card")).join("");
-  $("#guidesGrid").innerHTML = currentArticles.filter(a=>["Budgeting","Guides","Credit"].includes(a.category)).slice(0,3).map(a=>articleCard(a,"article-card category-card")).join("");
-  renderLatest();
-}
-function renderLatest() {
-  const list = currentArticles.slice(0,visibleCount);
-  latestGrid.innerHTML = list.map(a=>articleCard(a,"article-card latest-card")).join("");
-  $("#emptyState").hidden = currentArticles.length !== 0;
-  $("#loadMore").hidden = currentArticles.length <= visibleCount;
-}
-function showArticleNotice(event, id) {
-  event.preventDefault();
-  const article = ARTICLES.find(a=>a.id===id);
-  if (!article) return;
-  alert(`"${article.title}" is a sample article card. Replace this link with your published article URL when your content is ready.`);
-}
-$("#loadMore").addEventListener("click",()=>{visibleCount += 4;renderLatest();});
-$("#searchForm").addEventListener("submit",event=>{
-  event.preventDefault();
-  const query = $("#searchInput").value.trim().toLowerCase();
-  currentArticles = ARTICLES.filter(a=>`${a.title} ${a.category} ${a.summary}`.toLowerCase().includes(query));
-  visibleCount = 8;
-  $("#all-articles").scrollIntoView({behavior:"smooth"});
-  render();
+  // 辅助函数：创建卡片 HTML
+  function createCard(article) {
+    return `
+      <article class="article-card">
+        <a href="${article.url}" class="image-placeholder card-image" style="background: url('${article.image}') center/cover no-repeat;">
+          <span>${article.category.toUpperCase()}</span>
+        </a>
+        <h3 class="card-title"><a href="${article.url}">${article.title}</a></h3>
+        <div class="card-meta">${article.date} · ${article.category}</div>
+      </article>
+    `;
+  }
+
+  // 2. 渲染 Editor's Picks
+  const editorsGrid = document.getElementById("editorsGrid");
+  if (editorsGrid) {
+    const editors = ARTICLES.filter(a => a.editor).slice(0, 4);
+    editorsGrid.innerHTML = editors.map(createCard).join("");
+  }
+
+  // 3. 渲染 Trending Reads
+  const trendingList = document.getElementById("trendingList");
+  if (trendingList) {
+    const trendings = ARTICLES.filter(a => a.trending).slice(0, 3);
+    trendingList.innerHTML = trendings.map(a => `
+      <div class="trending-item">
+        <a href="${a.url}" class="image-placeholder trending-thumb" style="background: url('${a.image}') center/cover no-repeat;"></a>
+        <div>
+          <h3><a href="${a.url}">${a.title}</a></h3>
+          <small>${a.date}</small>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  // 4. 渲染 Latest Articles
+  const latestGrid = document.getElementById("latestGrid");
+  if (latestGrid) {
+    latestGrid.innerHTML = ARTICLES.map(createCard).join("");
+  }
+
+  // 5. 分类模块渲染
+  const renderRow = (id, cat) => {
+    const el = document.getElementById(id);
+    if (el) {
+      const items = ARTICLES.filter(a => a.category.toLowerCase().includes(cat.toLowerCase())).slice(0, 3);
+      el.innerHTML = items.map(createCard).join("");
+    }
+  };
+  renderRow("makeMoneyGrid", "Make Money");
+  renderRow("saveMoneyGrid", "Save Money");
+  renderRow("guidesGrid", "Budgeting");
 });
-$("#searchInput").addEventListener("input",event=>{
-  if (!event.target.value.trim()) { currentArticles=[...ARTICLES]; visibleCount=8; render(); }
-});
-$("#mobileMenu").addEventListener("click",()=>{
-  const nav=$("#navItems");
-  const isOpen=nav.classList.toggle("open");
-  $("#mobileMenu").setAttribute("aria-expanded",String(isOpen));
-});
-$("#newsletterForm").addEventListener("submit",event=>{
-  event.preventDefault();
-  $("#formMessage").textContent="Thanks! This demo form is not connected to an email service yet.";
-  $("#formMessage").style.color="#4b3c78";
-});
-render();
