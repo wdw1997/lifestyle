@@ -17,7 +17,7 @@ const ARTICLES = [
     date: "October 22, 2026",
     summary: "With inflation hitting US & European supermarkets, are subscription meal boxes like HelloFresh actually cheaper than grocery shopping?",
     image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80",
-    url: "post-1.html",
+    url: "post-2.html",
     editor: true,
     trending: false
   },
@@ -28,7 +28,7 @@ const ARTICLES = [
     date: "October 20, 2026",
     summary: "You don't need a $1,000 ergonomic setup. These 5 highly-rated productivity essentials will boost your focus without draining your wallet.",
     image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=800&q=80",
-    url: "post-1.html",
+    url: "post-3.html",
     editor: true,
     trending: true
   },
@@ -39,7 +39,7 @@ const ARTICLES = [
     date: "October 18, 2026",
     summary: "Unexpected car repairs or medical bills can derail your budget. Follow this zero-fluff, step-by-step cash-saving blueprint.",
     image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=800&q=80",
-    url: "post-1.html",
+    url: "post-4.html",
     editor: true,
     trending: false
   },
@@ -50,7 +50,7 @@ const ARTICLES = [
     date: "October 16, 2026",
     summary: "Traditional big banks pay 0.01% interest. Top modern online accounts pay over 4.5% APY with full FDIC insurance.",
     image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80",
-    url: "post-1.html",
+    url: "post-4.html",
     editor: false,
     trending: true
   },
