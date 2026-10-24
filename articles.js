@@ -50,7 +50,7 @@ const ARTICLES = [
     date: "October 16, 2026",
     summary: "Traditional big banks pay 0.01% interest. Top modern online accounts pay over 4.5% APY with full FDIC insurance.",
     image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80",
-    url: "post-4.html",
+    url: "post-5.html",
     editor: false,
     trending: true
   },
@@ -61,7 +61,7 @@ const ARTICLES = [
     date: "October 14, 2026",
     summary: "A practical guide to cutting out non-essential spending for one month. See how our readers saved an average of $650.",
     image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80",
-    url: "post-1.html",
+    url: "post-6.html",
     editor: false,
     trending: false
   }
