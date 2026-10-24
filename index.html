@@ -7,7 +7,7 @@
   <title>Everyday Penny — Make More of Your Money</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* 补充合规关于与免责声明样式 */
+    /* 合规关于与免责声明模块 */
     .about-section { background: #fbfafc; border-top: 1px solid #ebe8f2; border-bottom: 1px solid #ebe8f2; padding: 40px 20px; margin-top: 60px; }
     .about-container { max-width: 860px; margin: auto; text-align: center; }
     .about-container h2 { font-family: "Playfair Display", Georgia, serif; font-size: 26px; color: #26223f; margin-bottom: 15px; }
@@ -36,7 +36,7 @@
     </div>
   </header>
 
-  <!-- 修复后的100%全功能导航栏 -->
+  <!-- 全功能可点击导航栏 -->
   <nav class="main-nav" aria-label="Main navigation">
     <button class="mobile-menu" id="mobileMenu" aria-expanded="false">☰ <span>Menu</span></button>
     <div class="nav-items" id="navItems">
@@ -136,7 +136,7 @@
     </section>
   </main>
 
-  <!-- 专门为通过联盟与广告审核增加的“关于与免责声明”板块 -->
+  <!-- 关于与免责声明 -->
   <section class="about-section" id="about">
     <div class="about-container">
       <h2>About Everyday Penny</h2>
@@ -147,7 +147,7 @@
     </div>
   </section>
 
-  <!-- 底部页脚 -->
+  <!-- 页脚 -->
   <footer class="site-footer">
     <a class="brand footer-brand" href="index.html">
       <span class="brand-mark">e</span>
@@ -165,5 +165,38 @@
 
   <script src="articles.js"></script>
   <script src="script.js"></script>
+
+  <!-- 核心交互：强制接管“加载更多”逻辑（100%无视浏览器缓存） -->
+  <script>
+    window.addEventListener("load", function () {
+      const btn = document.getElementById("loadMore");
+      const grid = document.getElementById("latestGrid");
+      if (!btn || !grid) return;
+
+      // 1. 初始化：只显示前 8 篇，把第 9 篇之后的文章全部隐藏
+      const cards = grid.querySelectorAll(".article-card");
+      for (let i = 8; i < cards.length; i++) {
+        cards[i].style.display = "none";
+      }
+
+      // 2. 点击按钮：每次展开 4 篇
+      btn.onclick = function () {
+        const hiddenCards = grid.querySelectorAll('.article-card[style*="display: none"]');
+        if (hiddenCards.length > 0) {
+          for (let j = 0; j < Math.min(4, hiddenCards.length); j++) {
+            hiddenCards[j].style.display = "";
+          }
+        }
+
+        // 3. 如果全部展开完毕，按钮变灰停用
+        const stillHidden = grid.querySelectorAll('.article-card[style*="display: none"]');
+        if (stillHidden.length === 0) {
+          btn.textContent = "ALL ARTICLES LOADED";
+          btn.style.opacity = "0.5";
+          btn.style.cursor = "default";
+        }
+      };
+    });
+  </script>
 </body>
 </html>
