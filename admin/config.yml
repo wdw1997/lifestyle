@@ -1,0 +1,20 @@
+backend:
+  name: github
+  repo: wdw1997/lifestyle
+  branch: main
+
+media_folder: "images/uploads" # 上传的图片自动保存的地方
+public_folder: "/images/uploads"
+
+collections:
+  - name: "blog"
+    label: "Articles"
+    folder: "posts" # 文章自动保存的地方
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    fields:
+      - {label: "Title", name: "title", widget: "string"}
+      - {label: "Publish Date", name: "date", widget: "datetime"}
+      - {label: "Featured Image", name: "thumbnail", widget: "image"}
+      - {label: "Category", name: "category", widget: "select", options: ["Save Money", "Make Money", "Budgeting", "Lifestyle"]}
+      - {label: "Body", name: "body", widget: "markdown"}
