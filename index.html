@@ -61,8 +61,8 @@
         </a>
         <div class="hero-copy">
           <span class="eyebrow">MONEY & EVERYDAY LIFE</span>
-          <h1><a href="post-1.html" id="heroTitle">Simple Ways to Make Your Money Go Further</a></h1>
-          <p id="heroSummary">Practical, approachable ideas to help you feel more in control of your finances — one small step at a time.</p>
+          <h1><a href="post-1.html" id="heroTitle">The $7 Latte Trap: How I Saved $1,800 a Year Making Gourmet Coffee at Home</a></h1>
+          <p id="heroSummary">Skipping Starbucks won't buy you a house, but ditching the daily $7 drive-thru habit can fund your dream vacation. Here is the realistic math.</p>
           <div class="byline">BY DONGWEI WANG <span>·</span> 5 MIN READ</div>
         </div>
       </article>
@@ -85,4 +85,166 @@
         <div class="topic-grid">
           <a class="topic-card" href="#make-money"><span class="topic-icon">↗</span><b>MAKE MONEY</b><small>Side hustles, jobs & earning ideas</small></a>
           <a class="topic-card" href="#save-money"><span class="topic-icon">⌁</span><b>SAVE MONEY</b><small>Everyday savings that add up</small></a>
-          <a class="topic-card" href="#budgeting"><span class="topic-icon">▤</span><b>BUDGETING</b><small>Build a plan that works for you</sma
+          <a class="topic-card" href="#budgeting"><span class="topic-icon">▤</span><b>BUDGETING</b><small>Build a plan that works for you</small></a>
+          <a class="topic-card" href="post-5.html"><span class="topic-icon">◎</span><b>BANKING & SAVINGS</b><small>Earn high-yield passive returns</small></a>
+        </div>
+      </div>
+
+      <aside class="trending-column">
+        <div class="section-heading"><h2>Trending Reads</h2><span></span></div>
+        <div id="trendingList"></div>
+
+        <div class="newsletter-card" id="newsletter">
+          <span class="eyebrow">A LITTLE GOOD NEWS</span>
+          <h3>Make money feel less complicated.</h3>
+          <p>Sign up for the Everyday Penny newsletter for weekly curated hacks.</p>
+          <form id="newsletterForm" onsubmit="event.preventDefault(); alert('Thank you for subscribing!');">
+            <input type="email" placeholder="Your email address" required aria-label="Your email address">
+            <button class="purple-button" type="submit">SIGN ME UP →</button>
+          </form>
+          <small class="form-message" id="formMessage">By subscribing, you agree to receive email updates. Unsubscribe anytime.</small>
+        </div>
+      </aside>
+    </section>
+
+    <section class="category-section" id="make-money">
+      <div class="category-title"><h2>Make Money</h2><a href="#all-articles">VIEW ALL →</a></div>
+      <div class="category-feature-row" id="makeMoneyGrid"></div>
+    </section>
+
+    <section class="category-section" id="save-money">
+      <div class="category-title"><h2>Save Money</h2><a href="#all-articles">VIEW ALL →</a></div>
+      <div class="category-feature-row" id="saveMoneyGrid"></div>
+    </section>
+
+    <section class="category-section" id="budgeting">
+      <div class="category-title"><h2>Budgeting & Guides</h2><a href="#all-articles">VIEW ALL →</a></div>
+      <div class="category-feature-row" id="guidesGrid"></div>
+    </section>
+
+    <!-- 最新文章区 -->
+    <section class="all-articles" id="all-articles">
+      <div class="category-title"><h2>Latest Articles</h2><span class="latest-note">New ideas for your money life</span></div>
+      <div class="latest-grid" id="latestGrid"></div>
+      <button class="load-more" id="loadMore">LOAD MORE ARTICLES</button>
+      <p class="empty-state" id="emptyState" hidden>No articles match your search. Try another keyword.</p>
+    </section>
+  </main>
+
+  <section class="about-section" id="about">
+    <div class="about-container">
+      <h2>About Everyday Penny</h2>
+      <p>Everyday Penny is an independent digital publication dedicated to simplifying personal finance, smart household spending, and modern lifestyle habits. Our mission is to provide transparent, actionable advice to help busy individuals and families in the US and Europe make confident financial choices without sacrificing their quality of life.</p>
+      <div class="legal-note">
+        <strong>Affiliate & Advertising Disclosure:</strong> Everyday Penny participates in various affiliate marketing programs, which means we may earn paid commissions on editorially chosen products purchased through our links to retailer sites (such as Amazon, HelloFresh, and banking partners) at no additional cost to you. All recommendations are independently researched.
+      </div>
+    </div>
+  </section>
+
+  <footer class="site-footer">
+    <a class="brand footer-brand" href="index.html">
+      <span class="brand-mark">e</span>
+      <span class="brand-name"><b>EVERYDAY</b><span>PENNY</span></span>
+    </a>
+    <p>Helpful money ideas for real life.</p>
+    <div class="footer-links">
+      <a href="#about">About</a>
+      <a href="#about">Contact</a>
+      <a href="#about">Privacy Policy</a>
+      <a href="#about">Affiliate Disclaimer</a>
+    </div>
+    <small>© 2026 Everyday Penny. All editorial rights reserved. For educational and lifestyle purposes only.</small>
+  </footer>
+
+  <!-- 终极合体：数据+逻辑100%内置，绝不走任何外部文件，彻底消灭缓存！ -->
+  <script>
+    const ALL_POSTS = [
+      { id: 1, title: "The $7 Latte Trap: How I Saved $1,800 a Year Making Gourmet Coffee at Home", category: "Save Money", date: "Staff Pick", image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80", url: "post-1.html", editor: true, trending: true },
+      { id: 2, title: "Meal Kits vs. Supermarket Groceries: The Real Math for Busy People", category: "Food & Budget", date: "Popular", image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80", url: "post-2.html", editor: true, trending: false },
+      { id: 3, title: "5 Genius Work-From-Home Upgrades on Amazon Under $50", category: "Make Money", date: "Recommended", image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=800&q=80", url: "post-3.html", editor: true, trending: true },
+      { id: 4, title: "How to Build a $1,000 Starter Emergency Fund in 60 Days", category: "Budgeting", date: "Essential", image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=800&q=80", url: "post-4.html", editor: true, trending: false },
+      { id: 5, title: "High-Yield Savings Accounts: Stop Leaving Free Interest on the Table", category: "Banking", date: "High Return", image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80", url: "post-5.html", editor: false, trending: true },
+      { id: 6, title: "The 30-Day No-Spend Challenge: Reset Your Relationship with Money", category: "Save Money", date: "Trending", image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80", url: "post-6.html", editor: false, trending: false },
+      { id: 7, title: "5 Genius Pet Gadgets on Amazon That Will Actually Save Your Sanity", category: "Pet Care", date: "Top Rated", image: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80", url: "post-7.html", editor: true, trending: true },
+      { id: 8, title: "Drugstore Dupes: 4 Affordable Skincare Swaps That Beat Luxury Brands", category: "Beauty", date: "Staff Pick", image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80", url: "post-8.html", editor: true, trending: false },
+      { id: 9, title: "The Tuesday Flight Myth: 5 Real Booking Hacks That Actually Save on Airfare", category: "Travel", date: "Editor's Choice", image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80", url: "post-9.html", editor: false, trending: false },
+      { id: 10, title: "4 Smart Kitchen Appliances That Cut My Weekly Food Waste to Zero", category: "Smart Living", date: "Verified", image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80", url: "post-10.html", editor: false, trending: false },
+      { id: 11, title: "5 Energy-Saving Smart Home Gadgets That Lowered My Electric Bill", category: "Make Money", date: "Green Living", image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80", url: "post-11.html", editor: false, trending: false },
+      { id: 12, title: "Ditching the $150 Gym Membership: The Complete Home Workout Blueprint", category: "Health & Fitness", date: "Recommended", image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80", url: "post-12.html", editor: false, trending: false },
+      { id: 13, title: "The High-Priced Kibble Trap: How to Feed Your Dog Like Royalty on a Budget", category: "Pet Care", date: "Nutrition Guide", image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=800&q=80", url: "post-13.html", editor: false, trending: false },
+      { id: 14, title: "French Pharmacy Secrets: 4 Cult Skincare Staples Under $20 Dermatologists Actually Use", category: "Beauty", date: "Cult Favorite", image: "https://images.unsplash.com/photo-1608248597359-00966f7f2590?auto=format&fit=crop&w=800&q=80", url: "post-14.html", editor: false, trending: false }
+    ];
+
+    function renderCard(item) {
+      return '<article class="article-card">' +
+        '<a href="' + item.url + '" class="image-placeholder card-image" style="background: url(\'' + item.image + '\') center/cover no-repeat;">' +
+          '<span>' + item.category.toUpperCase() + '</span>' +
+        '</a>' +
+        '<h3 class="card-title"><a href="' + item.url + '">' + item.title + '</a></h3>' +
+        '<div class="card-meta">' + item.date + ' · ' + item.category + '</div>' +
+      '</article>';
+    }
+
+    // 渲染头条大图
+    const heroImg = document.querySelector(".hero-image");
+    if (heroImg) heroImg.style.background = "url('" + ALL_POSTS[0].image + "') center/cover no-repeat";
+
+    // 渲染 Editor's Picks (前 4 篇)
+    const edGrid = document.getElementById("editorsGrid");
+    if (edGrid) edGrid.innerHTML = ALL_POSTS.slice(0, 4).map(renderCard).join("");
+
+    // 渲染 Trending
+    const trList = document.getElementById("trendingList");
+    if (trList) {
+      trList.innerHTML = ALL_POSTS.filter(p => p.trending).slice(0, 3).map(p => 
+        '<div class="trending-item">' +
+          '<a href="' + p.url + '" class="image-placeholder trending-thumb" style="background: url(\'' + p.image + '\') center/cover no-repeat;"></a>' +
+          '<div><h3><a href="' + p.url + '">' + p.title + '</a></h3><small>' + p.date + '</small></div>' +
+        '</div>'
+      ).join("");
+    }
+
+    // 渲染分类行
+    function renderCategoryRow(elemId, keyword) {
+      const el = document.getElementById(elemId);
+      if (el) el.innerHTML = ALL_POSTS.filter(p => p.category.toLowerCase().includes(keyword)).slice(0, 3).map(renderCard).join("");
+    }
+    renderCategoryRow("makeMoneyGrid", "make");
+    renderCategoryRow("saveMoneyGrid", "save");
+    renderCategoryRow("guidesGrid", "budget");
+
+    // 核心分页：首屏严格锁定只展示前 8 篇！
+    const latestGrid = document.getElementById("latestGrid");
+    const loadBtn = document.getElementById("loadMore");
+    let currentLimit = 8; // 默认严格只展示 8 篇
+
+    function drawLatest() {
+      if (!latestGrid) return;
+      latestGrid.innerHTML = ALL_POSTS.slice(0, currentLimit).map(renderCard).join("");
+
+      if (loadBtn) {
+        if (currentLimit >= ALL_POSTS.length) {
+          loadBtn.textContent = "ALL ARTICLES LOADED";
+          loadBtn.style.opacity = "0.4";
+          loadBtn.style.cursor = "default";
+        } else {
+          loadBtn.textContent = "LOAD MORE ARTICLES";
+        }
+      }
+    }
+
+    // 初始执行绘制（只有 8 篇）
+    drawLatest();
+
+    // 点击按钮严格累加 4 篇
+    if (loadBtn) {
+      loadBtn.addEventListener("click", function () {
+        if (currentLimit < ALL_POSTS.length) {
+          currentLimit += 4;
+          drawLatest();
+        }
+      });
+    }
+  </script>
+</body>
+</html>
