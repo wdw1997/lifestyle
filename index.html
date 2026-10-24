@@ -7,7 +7,6 @@
   <title>Everyday Penny — Make More of Your Money</title>
   <link rel="stylesheet" href="styles.css">
   <style>
-    /* 合规关于与免责声明模块 */
     .about-section { background: #fbfafc; border-top: 1px solid #ebe8f2; border-bottom: 1px solid #ebe8f2; padding: 40px 20px; margin-top: 60px; }
     .about-container { max-width: 860px; margin: auto; text-align: center; }
     .about-container h2 { font-family: "Playfair Display", Georgia, serif; font-size: 26px; color: #26223f; margin-bottom: 15px; }
@@ -36,7 +35,6 @@
     </div>
   </header>
 
-  <!-- 全功能可点击导航栏 -->
   <nav class="main-nav" aria-label="Main navigation">
     <button class="mobile-menu" id="mobileMenu" aria-expanded="false">☰ <span>Menu</span></button>
     <div class="nav-items" id="navItems">
@@ -56,7 +54,6 @@
   </nav>
 
   <main class="page-wrap">
-    <!-- 顶部头条大区 -->
     <section class="hero-grid">
       <article class="hero-feature">
         <a class="hero-image image-placeholder img-family" href="post-1.html" aria-label="Featured article image">
@@ -79,7 +76,6 @@
       </aside>
     </section>
 
-    <!-- 主体内容与侧边栏 -->
     <section class="content-layout">
       <div class="main-column">
         <div class="section-heading"><h2>Editor's Picks</h2><span></span></div>
@@ -111,7 +107,6 @@
       </aside>
     </section>
 
-    <!-- 分类展示区 -->
     <section class="category-section" id="make-money">
       <div class="category-title"><h2>Make Money</h2><a href="#all-articles">VIEW ALL →</a></div>
       <div class="category-feature-row" id="makeMoneyGrid"></div>
@@ -127,7 +122,7 @@
       <div class="category-feature-row" id="guidesGrid"></div>
     </section>
 
-    <!-- 全部文章 -->
+    <!-- 最新文章区 -->
     <section class="all-articles" id="all-articles">
       <div class="category-title"><h2>Latest Articles</h2><span class="latest-note">New ideas for your money life</span></div>
       <div class="latest-grid" id="latestGrid"></div>
@@ -136,7 +131,6 @@
     </section>
   </main>
 
-  <!-- 关于与免责声明 -->
   <section class="about-section" id="about">
     <div class="about-container">
       <h2>About Everyday Penny</h2>
@@ -147,7 +141,6 @@
     </div>
   </section>
 
-  <!-- 页脚 -->
   <footer class="site-footer">
     <a class="brand footer-brand" href="index.html">
       <span class="brand-mark">e</span>
@@ -163,39 +156,97 @@
     <small>© 2026 Everyday Penny. All editorial rights reserved. For educational and lifestyle purposes only.</small>
   </footer>
 
+  <!-- 引入文章数据 -->
   <script src="articles.js"></script>
-  <script src="script.js"></script>
 
-  <!-- 核心交互：强制接管“加载更多”逻辑（100%无视浏览器缓存） -->
+  <!-- 核心驱动引擎：直接内嵌在 HTML 中，绝不冲突，100%点击即生效 -->
   <script>
-    window.addEventListener("load", function () {
-      const btn = document.getElementById("loadMore");
-      const grid = document.getElementById("latestGrid");
-      if (!btn || !grid) return;
+    document.addEventListener("DOMContentLoaded", function () {
+      if (typeof ARTICLES === "undefined" || !ARTICLES.length) return;
 
-      // 1. 初始化：只显示前 8 篇，把第 9 篇之后的文章全部隐藏
-      const cards = grid.querySelectorAll(".article-card");
-      for (let i = 8; i < cards.length; i++) {
-        cards[i].style.display = "none";
+      // 1. 头条大卡片
+      const hero = ARTICLES[0];
+      if (hero) {
+        const heroTitle = document.getElementById("heroTitle");
+        const heroSummary = document.getElementById("heroSummary");
+        const heroImage = document.querySelector(".hero-image");
+        if (heroTitle) { heroTitle.textContent = hero.title; heroTitle.href = hero.url; }
+        if (heroSummary) heroSummary.textContent = hero.summary;
+        if (heroImage) { heroImage.href = hero.url; heroImage.style.background = "url('" + hero.image + "') center/cover no-repeat"; }
       }
 
-      // 2. 点击按钮：每次展开 4 篇
-      btn.onclick = function () {
-        const hiddenCards = grid.querySelectorAll('.article-card[style*="display: none"]');
-        if (hiddenCards.length > 0) {
-          for (let j = 0; j < Math.min(4, hiddenCards.length); j++) {
-            hiddenCards[j].style.display = "";
+      // 卡片生成模板
+      function makeCard(a) {
+        return '<article class="article-card">' +
+          '<a href="' + a.url + '" class="image-placeholder card-image" style="background: url(\'' + a.image + '\') center/cover no-repeat;">' +
+            '<span>' + a.category.toUpperCase() + '</span>' +
+          '</a>' +
+          '<h3 class="card-title"><a href="' + a.url + '">' + a.title + '</a></h3>' +
+          '<div class="card-meta">' + a.date + ' · ' + a.category + '</div>' +
+        '</article>';
+      }
+
+      // 2. Editor's Picks
+      const edGrid = document.getElementById("editorsGrid");
+      if (edGrid) {
+        edGrid.innerHTML = ARTICLES.filter(a => a.editor).slice(0, 4).map(makeCard).join("");
+      }
+
+      // 3. Trending Reads
+      const trList = document.getElementById("trendingList");
+      if (trList) {
+        trList.innerHTML = ARTICLES.filter(a => a.trending).slice(0, 3).map(a => 
+          '<div class="trending-item">' +
+            '<a href="' + a.url + '" class="image-placeholder trending-thumb" style="background: url(\'' + a.image + '\') center/cover no-repeat;"></a>' +
+            '<div><h3><a href="' + a.url + '">' + a.title + '</a></h3><small>' + a.date + '</small></div>' +
+          '</div>'
+        ).join("");
+      }
+
+      // 4. 分类行
+      function populateRow(id, cat) {
+        const el = document.getElementById(id);
+        if (el) {
+          el.innerHTML = ARTICLES.filter(a => a.category.toLowerCase().includes(cat.toLowerCase())).slice(0, 3).map(makeCard).join("");
+        }
+      }
+      populateRow("makeMoneyGrid", "make");
+      populateRow("saveMoneyGrid", "save");
+      populateRow("guidesGrid", "budget");
+
+      // 5. 核心：点击加载更多（初始严格只展示前 8 篇）
+      const latestGrid = document.getElementById("latestGrid");
+      const loadBtn = document.getElementById("loadMore");
+      let visibleCount = 8; // 默认展示篇数
+
+      function updateLatest() {
+        if (!latestGrid) return;
+        const currentSlice = ARTICLES.slice(0, visibleCount);
+        latestGrid.innerHTML = currentSlice.map(makeCard).join("");
+
+        if (loadBtn) {
+          if (visibleCount >= ARTICLES.length) {
+            loadBtn.textContent = "ALL ARTICLES LOADED";
+            loadBtn.style.opacity = "0.4";
+            loadBtn.style.cursor = "default";
+          } else {
+            loadBtn.textContent = "LOAD MORE ARTICLES";
           }
         }
+      }
 
-        // 3. 如果全部展开完毕，按钮变灰停用
-        const stillHidden = grid.querySelectorAll('.article-card[style*="display: none"]');
-        if (stillHidden.length === 0) {
-          btn.textContent = "ALL ARTICLES LOADED";
-          btn.style.opacity = "0.5";
-          btn.style.cursor = "default";
-        }
-      };
+      // 初始渲染
+      updateLatest();
+
+      // 点击按钮加载后续文章
+      if (loadBtn) {
+        loadBtn.onclick = function () {
+          if (visibleCount < ARTICLES.length) {
+            visibleCount += 4; // 每次多展示 4 篇
+            updateLatest();
+          }
+        };
+      }
     });
   </script>
 </body>
