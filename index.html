@@ -122,11 +122,11 @@
       <div class="category-feature-row" id="guidesGrid"></div>
     </section>
 
-    <!-- 最新文章区 -->
+    <!-- 最新文章区：使用强制原生 onclick 触发，绝不可能失灵 -->
     <section class="all-articles" id="all-articles">
       <div class="category-title"><h2>Latest Articles</h2><span class="latest-note">New ideas for your money life</span></div>
       <div class="latest-grid" id="latestGrid"></div>
-      <button class="load-more" id="loadMore">LOAD MORE ARTICLES</button>
+      <button class="load-more" id="loadMore" onclick="doLoadMore()">LOAD MORE ARTICLES</button>
       <p class="empty-state" id="emptyState" hidden>No articles match your search. Try another keyword.</p>
     </section>
   </main>
@@ -156,9 +156,9 @@
     <small>© 2026 Everyday Penny. All editorial rights reserved. For educational and lifestyle purposes only.</small>
   </footer>
 
-  <!-- 终极合体：数据+逻辑100%内置，绝不走任何外部文件，彻底消灭缓存！ -->
+  <!-- 100% 自包含驱动代码，直接挂载到全局 window 对象 -->
   <script>
-    const ALL_POSTS = [
+    var ALL_POSTS = [
       { id: 1, title: "The $7 Latte Trap: How I Saved $1,800 a Year Making Gourmet Coffee at Home", category: "Save Money", date: "Staff Pick", image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80", url: "post-1.html", editor: true, trending: true },
       { id: 2, title: "Meal Kits vs. Supermarket Groceries: The Real Math for Busy People", category: "Food & Budget", date: "Popular", image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80", url: "post-2.html", editor: true, trending: false },
       { id: 3, title: "5 Genius Work-From-Home Upgrades on Amazon Under $50", category: "Make Money", date: "Recommended", image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=800&q=80", url: "post-3.html", editor: true, trending: true },
@@ -175,76 +175,73 @@
       { id: 14, title: "French Pharmacy Secrets: 4 Cult Skincare Staples Under $20 Dermatologists Actually Use", category: "Beauty", date: "Cult Favorite", image: "https://images.unsplash.com/photo-1608248597359-00966f7f2590?auto=format&fit=crop&w=800&q=80", url: "post-14.html", editor: false, trending: false }
     ];
 
-    function renderCard(item) {
+    function createCardHTML(p) {
       return '<article class="article-card">' +
-        '<a href="' + item.url + '" class="image-placeholder card-image" style="background: url(\'' + item.image + '\') center/cover no-repeat;">' +
-          '<span>' + item.category.toUpperCase() + '</span>' +
+        '<a href="' + p.url + '" class="image-placeholder card-image" style="background: url(\'' + p.image + '\') center/cover no-repeat;">' +
+          '<span>' + p.category.toUpperCase() + '</span>' +
         '</a>' +
-        '<h3 class="card-title"><a href="' + item.url + '">' + item.title + '</a></h3>' +
-        '<div class="card-meta">' + item.date + ' · ' + item.category + '</div>' +
+        '<h3 class="card-title"><a href="' + p.url + '">' + p.title + '</a></h3>' +
+        '<div class="card-meta">' + p.date + ' · ' + p.category + '</div>' +
       '</article>';
     }
 
-    // 渲染头条大图
-    const heroImg = document.querySelector(".hero-image");
+    // 渲染其他固定区域
+    var heroImg = document.querySelector(".hero-image");
     if (heroImg) heroImg.style.background = "url('" + ALL_POSTS[0].image + "') center/cover no-repeat";
 
-    // 渲染 Editor's Picks (前 4 篇)
-    const edGrid = document.getElementById("editorsGrid");
-    if (edGrid) edGrid.innerHTML = ALL_POSTS.slice(0, 4).map(renderCard).join("");
+    var edGrid = document.getElementById("editorsGrid");
+    if (edGrid) edGrid.innerHTML = ALL_POSTS.slice(0, 4).map(createCardHTML).join("");
 
-    // 渲染 Trending
-    const trList = document.getElementById("trendingList");
+    var trList = document.getElementById("trendingList");
     if (trList) {
-      trList.innerHTML = ALL_POSTS.filter(p => p.trending).slice(0, 3).map(p => 
-        '<div class="trending-item">' +
+      trList.innerHTML = ALL_POSTS.filter(function(p){ return p.trending; }).slice(0, 3).map(function(p){
+        return '<div class="trending-item">' +
           '<a href="' + p.url + '" class="image-placeholder trending-thumb" style="background: url(\'' + p.image + '\') center/cover no-repeat;"></a>' +
           '<div><h3><a href="' + p.url + '">' + p.title + '</a></h3><small>' + p.date + '</small></div>' +
-        '</div>'
-      ).join("");
+        '</div>';
+      }).join("");
     }
 
-    // 渲染分类行
-    function renderCategoryRow(elemId, keyword) {
-      const el = document.getElementById(elemId);
-      if (el) el.innerHTML = ALL_POSTS.filter(p => p.category.toLowerCase().includes(keyword)).slice(0, 3).map(renderCard).join("");
+    function renderRow(id, tag) {
+      var el = document.getElementById(id);
+      if (el) el.innerHTML = ALL_POSTS.filter(function(p){ return p.category.toLowerCase().indexOf(tag) !== -1; }).slice(0, 3).map(createCardHTML).join("");
     }
-    renderCategoryRow("makeMoneyGrid", "make");
-    renderCategoryRow("saveMoneyGrid", "save");
-    renderCategoryRow("guidesGrid", "budget");
+    renderRow("makeMoneyGrid", "make");
+    renderRow("saveMoneyGrid", "save");
+    renderRow("guidesGrid", "budget");
 
-    // 核心分页：首屏严格锁定只展示前 8 篇！
-    const latestGrid = document.getElementById("latestGrid");
-    const loadBtn = document.getElementById("loadMore");
-    let currentLimit = 8; // 默认严格只展示 8 篇
+    // 核心分页控制变量
+    window.currentLimit = 8;
 
-    function drawLatest() {
-      if (!latestGrid) return;
-      latestGrid.innerHTML = ALL_POSTS.slice(0, currentLimit).map(renderCard).join("");
+    window.refreshGrid = function() {
+      var grid = document.getElementById("latestGrid");
+      var btn = document.getElementById("loadMore");
+      if (!grid) return;
 
-      if (loadBtn) {
-        if (currentLimit >= ALL_POSTS.length) {
-          loadBtn.textContent = "ALL ARTICLES LOADED";
-          loadBtn.style.opacity = "0.4";
-          loadBtn.style.cursor = "default";
+      var subset = ALL_POSTS.slice(0, window.currentLimit);
+      grid.innerHTML = subset.map(createCardHTML).join("");
+
+      if (btn) {
+        if (window.currentLimit >= ALL_POSTS.length) {
+          btn.textContent = "ALL ARTICLES LOADED";
+          btn.style.opacity = "0.4";
+          btn.style.cursor = "default";
         } else {
-          loadBtn.textContent = "LOAD MORE ARTICLES";
+          btn.textContent = "LOAD MORE ARTICLES";
         }
       }
-    }
+    };
 
-    // 初始执行绘制（只有 8 篇）
-    drawLatest();
+    // 网页加载时立即绘制前 8 篇
+    window.refreshGrid();
 
-    // 点击按钮严格累加 4 篇
-    if (loadBtn) {
-      loadBtn.addEventListener("click", function () {
-        if (currentLimit < ALL_POSTS.length) {
-          currentLimit += 4;
-          drawLatest();
-        }
-      });
-    }
+    // 原生 onclick 点击事件函数
+    window.doLoadMore = function() {
+      if (window.currentLimit < ALL_POSTS.length) {
+        window.currentLimit += 4;
+        window.refreshGrid();
+      }
+    };
   </script>
 </body>
 </html>
