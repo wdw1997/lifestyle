@@ -1,6 +1,5 @@
 backend:
-  name: github
-  repo: wdw1997/lifestyle
+  name: git-gateway
   branch: main
 
 media_folder: "images/uploads" # 上传的图片自动保存的地方
