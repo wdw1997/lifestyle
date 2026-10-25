@@ -35,6 +35,7 @@
     </div>
   </header>
 
+  <!-- 导航栏已加入 Parenting (母婴) -->
   <nav class="main-nav" aria-label="Main navigation">
     <button class="mobile-menu" id="mobileMenu" aria-expanded="false">☰ <span>Menu</span></button>
     <div class="nav-items" id="navItems">
@@ -44,6 +45,7 @@
       <a href="#budgeting">Budgeting</a>
       <a href="#pet-care">Pet Care</a>
       <a href="#beauty">Beauty</a>
+      <a href="#parenting">Parenting</a>
       <a href="#about">About Us</a>
       <a href="#newsletter">Newsletter</a>
     </div>
@@ -86,7 +88,7 @@
           <a class="topic-card" href="#make-money"><span class="topic-icon">↗</span><b>MAKE MONEY</b><small>Side hustles, jobs & earning ideas</small></a>
           <a class="topic-card" href="#save-money"><span class="topic-icon">⌁</span><b>SAVE MONEY</b><small>Everyday savings that add up</small></a>
           <a class="topic-card" href="#budgeting"><span class="topic-icon">▤</span><b>BUDGETING</b><small>Build a plan that works for you</small></a>
-          <a class="topic-card" href="#pet-care"><span class="topic-icon">🐾</span><b>PET CARE</b><small>Smart gadgets & pet budgeting</small></a>
+          <a class="topic-card" href="#parenting"><span class="topic-icon">🍼</span><b>PARENTING</b><small>Smart baby gear & essentials</small></a>
         </div>
       </div>
 
@@ -132,6 +134,12 @@
       <div class="category-feature-row" id="beautyGrid" style="grid-template-columns: repeat(2, 1fr);"></div>
     </section>
 
+    <!-- 🎯 新增：母婴专属板块 -->
+    <section class="category-section" id="parenting">
+      <div class="category-title"><h2>Parenting & Baby Essentials</h2><a href="#all-articles">VIEW ALL →</a></div>
+      <div class="category-feature-row" id="parentingGrid" style="grid-template-columns: repeat(1, 1fr); max-width: 400px;"></div>
+    </section>
+
     <section class="all-articles" id="all-articles">
       <div class="category-title"><h2>Latest Articles</h2><span class="latest-note">New ideas for your money life</span></div>
       <div class="latest-grid" id="latestGrid"></div>
@@ -147,7 +155,6 @@
     </div>
   </section>
 
-  <!-- 完美精简页脚，Privacy Policy 已直接链接到独立页面 -->
   <footer class="site-footer">
     <div class="footer-flex">
       <div class="footer-col-left">
@@ -181,82 +188,4 @@
       { id: 3, title: "5 Genius Work-From-Home Upgrades on Amazon Under $50", category: "Make Money", date: "Recommended", image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=800&q=80", url: "post-3.html", editor: true, trending: true },
       { id: 4, title: "How to Build a $1,000 Starter Emergency Fund in 60 Days", category: "Budgeting", date: "Essential", image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=800&q=80", url: "post-4.html", editor: true, trending: false },
       { id: 5, title: "High-Yield Savings Accounts: Stop Leaving Free Interest on the Table", category: "Banking", date: "High Return", image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80", url: "post-5.html", editor: false, trending: true },
-      { id: 6, title: "The 30-Day No-Spend Challenge: Reset Your Relationship with Money", category: "Save Money", date: "Trending", image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80", url: "post-6.html", editor: false, trending: false },
-      { id: 7, title: "5 Genius Pet Gadgets on Amazon That Will Actually Save Your Sanity", category: "Pet Care", date: "Top Rated", image: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80", url: "post-7.html", editor: true, trending: true },
-      { id: 8, title: "Drugstore Dupes: 4 Affordable Skincare Swaps That Beat Luxury Brands", category: "Beauty", date: "Staff Pick", image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80", url: "post-8.html", editor: true, trending: false },
-      { id: 9, title: "The Tuesday Flight Myth: 5 Real Booking Hacks That Actually Save on Airfare", category: "Travel", date: "Editor's Choice", image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80", url: "post-9.html", editor: false, trending: false },
-      { id: 10, title: "4 Smart Kitchen Appliances That Cut My Weekly Food Waste to Zero", category: "Smart Living", date: "Verified", image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80", url: "post-10.html", editor: false, trending: false },
-      { id: 11, title: "5 Energy-Saving Smart Home Gadgets That Lowered My Electric Bill", category: "Make Money", date: "Green Living", image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80", url: "post-11.html", editor: false, trending: false },
-      { id: 12, title: "Ditching the $150 Gym Membership: The Complete Home Workout Blueprint", category: "Health & Fitness", date: "Recommended", image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80", url: "post-12.html", editor: false, trending: false },
-      { id: 13, title: "The High-Priced Kibble Trap: How to Feed Your Dog Like Royalty on a Budget", category: "Pet Care", date: "Nutrition Guide", image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=800&q=80", url: "post-13.html", editor: false, trending: false },
-      { id: 14, title: "French Pharmacy Secrets: 4 Cult Skincare Staples Under $20 Dermatologists Actually Use", category: "Beauty", date: "Cult Favorite", image: "https://images.unsplash.com/photo-1608248597359-00966f7f2590?auto=format&fit=crop&w=800&q=80", url: "post-14.html", editor: false, trending: false }
-    ];
-
-    function renderCard(item) {
-      return '<article class="article-card">' +
-        '<a href="' + item.url + '" class="image-placeholder card-image" style="background: url(\'' + item.image + '\') center/cover no-repeat;">' +
-          '<span>' + item.category.toUpperCase() + '</span>' +
-        '</a>' +
-        '<h3 class="card-title"><a href="' + item.url + '">' + item.title + '</a></h3>' +
-        '<div class="card-meta">' + item.date + ' · ' + item.category + '</div>' +
-      '</article>';
-    }
-
-    var heroImg = document.querySelector(".hero-image");
-    if (heroImg) heroImg.style.background = "url('" + ALL_POSTS[0].image + "') center/cover no-repeat";
-
-    var edGrid = document.getElementById("editorsGrid");
-    if (edGrid) edGrid.innerHTML = ALL_POSTS.slice(0, 4).map(renderCard).join("");
-
-    var trList = document.getElementById("trendingList");
-    if (trList) {
-      trList.innerHTML = ALL_POSTS.filter(function(p){ return p.trending; }).slice(0, 3).map(function(p){
-        return '<div class="trending-item">' +
-          '<a href="' + p.url + '" class="image-placeholder trending-thumb" style="background: url(\'' + p.image + '\') center/cover no-repeat;"></a>' +
-          '<div><h3><a href="' + p.url + '">' + p.title + '</a></h3><small>' + p.date + '</small></div>' +
-        '</div>';
-      }).join("");
-    }
-
-    function renderRow(elemId, keyword) {
-      var el = document.getElementById(elemId);
-      if (el) el.innerHTML = ALL_POSTS.filter(function(p){ return p.category.toLowerCase().indexOf(keyword) !== -1; }).slice(0, 3).map(renderCard).join("");
-    }
-    renderRow("makeMoneyGrid", "make");
-    renderRow("saveMoneyGrid", "save");
-    renderRow("guidesGrid", "budget");
-    renderRow("petCareGrid", "pet");
-
-    var beautyEl = document.getElementById("beautyGrid");
-    if (beautyEl) {
-      beautyEl.innerHTML = ALL_POSTS.filter(function(p){ return p.category.toLowerCase().indexOf("beauty") !== -1; }).map(renderCard).join("");
-    }
-
-    window.currentLimit = 8;
-    window.refreshGrid = function() {
-      var grid = document.getElementById("latestGrid");
-      var btn = document.getElementById("loadMore");
-      if (!grid) return;
-      var subset = ALL_POSTS.slice(0, window.currentLimit);
-      grid.innerHTML = subset.map(renderCard).join("");
-      if (btn) {
-        if (window.currentLimit >= ALL_POSTS.length) {
-          btn.textContent = "ALL ARTICLES LOADED";
-          btn.style.opacity = "0.4";
-          btn.style.cursor = "default";
-        } else {
-          btn.textContent = "LOAD MORE ARTICLES";
-        }
-      }
-    };
-    window.refreshGrid();
-
-    window.doLoadMore = function() {
-      if (window.currentLimit < ALL_POSTS.length) {
-        window.currentLimit += 4;
-        window.refreshGrid();
-      }
-    };
-  </script>
-</body>
-</html>
+      { id: 6, title: "The 30-Day No-Spend Challenge: Reset Your Relationship with Money", category: "Save Money", date: "Trending", image: "https://image
