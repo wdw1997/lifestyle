@@ -13,6 +13,8 @@
     .about-container h2 { font-family: "Playfair Display", Georgia, serif; font-size: 26px; color: #26223f; margin-bottom: 15px; }
     .about-container p { font-size: 14px; color: #666273; line-height: 1.8; margin-bottom: 15px; }
     .legal-note { font-size: 12px; color: #8e8a9c; line-height: 1.6; border-top: 1px dashed #dcd8e6; padding-top: 15px; margin-top: 20px; }
+    /* 🎯 专属于美妆板块的黄金高度修复 */
+    #beautyGrid .card-image { height: 210px !important; }
   </style>
 </head>
 <body>
@@ -126,7 +128,7 @@
       <div class="category-feature-row" id="petCareGrid"></div>
     </section>
 
-    <!-- 🎯 完美自适应美妆板块，绝对不卡图 -->
+    <!-- 🎯 美妆专属板块：强制 2 列，高度完美对齐 -->
     <section class="category-section" id="beauty">
       <div class="category-title"><h2>Beauty & Skincare Dupes</h2><a href="#all-articles">VIEW ALL →</a></div>
       <div class="category-feature-row" id="beautyGrid" style="grid-template-columns: repeat(2, 1fr);"></div>
@@ -218,7 +220,6 @@
     renderRow("guidesGrid", "budget");
     renderRow("petCareGrid", "pet");
 
-    // 美妆专属 2 列自适应渲染
     var beautyEl = document.getElementById("beautyGrid");
     if (beautyEl) {
       beautyEl.innerHTML = ALL_POSTS.filter(function(p){ return p.category.toLowerCase().indexOf("beauty") !== -1; }).map(renderCard).join("");
