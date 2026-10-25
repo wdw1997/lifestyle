@@ -35,7 +35,7 @@
     </div>
   </header>
 
-  <!-- 顶部导航栏已更新为 Pet Care 和 Beauty -->
+  <!-- 顶部导航栏 -->
   <nav class="main-nav" aria-label="Main navigation">
     <button class="mobile-menu" id="mobileMenu" aria-expanded="false">☰ <span>Menu</span></button>
     <div class="nav-items" id="navItems">
@@ -43,8 +43,8 @@
       <a href="#save-money">Save Money</a>
       <a href="#make-money">Make Money</a>
       <a href="#budgeting">Budgeting</a>
-      <a href="post-7.html">Pet Care</a>
-      <a href="post-8.html">Beauty</a>
+      <a href="#pet-care">Pet Care</a>
+      <a href="#beauty">Beauty</a>
       <a href="#about">About Us</a>
       <a href="#newsletter">Newsletter</a>
     </div>
@@ -52,7 +52,7 @@
       <input id="searchInput" type="search" placeholder="Search articles…" aria-label="Search articles">
       <button aria-label="Search">⌕</button>
     </form>
-  </nav>
+  </main>
 
   <main class="page-wrap">
     <section class="hero-grid">
@@ -87,7 +87,7 @@
           <a class="topic-card" href="#make-money"><span class="topic-icon">↗</span><b>MAKE MONEY</b><small>Side hustles, jobs & earning ideas</small></a>
           <a class="topic-card" href="#save-money"><span class="topic-icon">⌁</span><b>SAVE MONEY</b><small>Everyday savings that add up</small></a>
           <a class="topic-card" href="#budgeting"><span class="topic-icon">▤</span><b>BUDGETING</b><small>Build a plan that works for you</small></a>
-          <a class="topic-card" href="post-7.html"><span class="topic-icon">🐾</span><b>PET CARE</b><small>Smart gadgets & pet budgeting</small></a>
+          <a class="topic-card" href="#pet-care"><span class="topic-icon">🐾</span><b>PET CARE</b><small>Smart gadgets & pet budgeting</small></a>
         </div>
       </div>
 
@@ -108,6 +108,7 @@
       </aside>
     </section>
 
+    <!-- 原有分类板块 -->
     <section class="category-section" id="make-money">
       <div class="category-title"><h2>Make Money</h2><a href="#all-articles">VIEW ALL →</a></div>
       <div class="category-feature-row" id="makeMoneyGrid"></div>
@@ -123,11 +124,23 @@
       <div class="category-feature-row" id="guidesGrid"></div>
     </section>
 
+    <!-- 🎯 新增：PET CARE 独立分类板块 -->
+    <section class="category-section" id="pet-care">
+      <div class="category-title"><h2>Pet Care & Essentials</h2><a href="#all-articles">VIEW ALL →</a></div>
+      <div class="category-feature-row" id="petCareGrid"></div>
+    </section>
+
+    <!-- 🎯 新增：BEAUTY 独立分类板块 -->
+    <section class="category-section" id="beauty">
+      <div class="category-title"><h2>Beauty & Skincare Dupes</h2><a href="#all-articles">VIEW ALL →</a></div>
+      <div class="category-feature-row" id="beautyGrid"></div>
+    </section>
+
     <!-- 最新文章区 -->
     <section class="all-articles" id="all-articles">
       <div class="category-title"><h2>Latest Articles</h2><span class="latest-note">New ideas for your money life</span></div>
       <div class="latest-grid" id="latestGrid"></div>
-      <button class="load-more" id="loadMore">LOAD MORE ARTICLES</button>
+      <button class="load-more" id="loadMore" onclick="doLoadMore()">LOAD MORE ARTICLES</button>
       <p class="empty-state" id="emptyState" hidden>No articles match your search. Try another keyword.</p>
     </section>
   </main>
@@ -157,9 +170,9 @@
     <small>© 2026 Docked Lifestyle. All editorial rights reserved. For educational and lifestyle purposes only.</small>
   </footer>
 
-  <!-- 数据源与核心逻辑 -->
+  <!-- 数据源与核心逻辑渲染 -->
   <script>
-    const ALL_POSTS = [
+    var ALL_POSTS = [
       { id: 1, title: "The $7 Latte Trap: How I Saved $1,800 a Year Making Gourmet Coffee at Home", category: "Save Money", date: "Staff Pick", image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80", url: "post-1.html", editor: true, trending: true },
       { id: 2, title: "Meal Kits vs. Supermarket Groceries: The Real Math for Busy People", category: "Food & Budget", date: "Popular", image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80", url: "post-2.html", editor: true, trending: false },
       { id: 3, title: "5 Genius Work-From-Home Upgrades on Amazon Under $50", category: "Make Money", date: "Recommended", image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=800&q=80", url: "post-3.html", editor: true, trending: true },
@@ -209,6 +222,8 @@
     renderRow("makeMoneyGrid", "make");
     renderRow("saveMoneyGrid", "save");
     renderRow("guidesGrid", "budget");
+    renderRow("petCareGrid", "pet");   // 🎯 渲染宠物板块
+    renderRow("beautyGrid", "beauty"); // 🎯 渲染美妆板块
 
     window.currentLimit = 8;
     window.refreshGrid = function() {
