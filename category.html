@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Category Archive — Docked Lifestyle</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .archive-wrap { max-width: 1180px; margin: 40px auto 80px; padding: 0 20px; }
+    .archive-title { font-family: "Playfair Display", Georgia, serif; font-size: 36px; color: #26223f; margin-bottom: 30px; border-bottom: 2px solid #4b3c78; padding-bottom: 10px; text-transform: uppercase; }
+    .archive-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    @media(max-width: 900px) { .archive-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media(max-width: 600px) { .archive-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="top-strip"><span>SMARTER MONEY. MORE ROOM TO LIVE.</span><span class="top-links"><a href="index.html">← Back to Home</a></span></div>
+  <header class="site-header"><a class="brand" href="index.html"><span class="brand-mark">d</span><span class="brand-name"><b>DOCKED</b><span>LIFESTYLE</span></span></a></header>
+
+  <main class="archive-wrap">
+    <h1 id="catTitle" class="archive-title">Category</h1>
+    <div class="archive-grid" id="catGrid">
+      <!-- 动态加载文章 -->
+    </div>
+  </main>
+
+  <footer class="site-footer"><p>© 2026 Docked Lifestyle. All rights reserved.</p></footer>
+
+  <script>
+    // 引入全站文章数据
+    var ALL_POSTS = [
+      { id: 1, title: "The $7 Latte Trap: How I Saved $1,800 a Year Making Gourmet Coffee at Home", category: "Save Money", date: "Staff Pick", image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80", url: "post-1.html" },
+      { id: 2, title: "Meal Kits vs. Supermarket Groceries: The Real Math for Busy People", category: "Food & Budget", date: "Popular", image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80", url: "post-2.html" },
+      { id: 3, title: "5 Genius Work-From-Home Upgrades on Amazon Under $50", category: "Make Money", date: "Recommended", image: "https://images.unsplash.com/photo-1593642632823-8f785ba67e45?auto=format&fit=crop&w=800&q=80", url: "post-3.html" },
+      { id: 4, title: "How to Build a $1,000 Starter Emergency Fund in 60 Days", category: "Budgeting", date: "Essential", image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=800&q=80", url: "post-4.html" },
+      { id: 5, title: "High-Yield Savings Accounts: Stop Leaving Free Interest on the Table", category: "Banking", date: "High Return", image: "https://images.unsplash.com/photo-1559526324-4b87b5e36e44?auto=format&fit=crop&w=800&q=80", url: "post-5.html" },
+      { id: 6, title: "The 30-Day No-Spend Challenge: Reset Your Relationship with Money", category: "Save Money", date: "Trending", image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80", url: "post-6.html" },
+      { id: 7, title: "5 Genius Pet Gadgets on Amazon That Will Actually Save Your Sanity", category: "Pet Care", date: "Top Rated", image: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80", url: "post-7.html" },
+      { id: 8, title: "Drugstore Dupes: 4 Affordable Skincare Swaps That Beat Luxury Brands", category: "Beauty", date: "Staff Pick", image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80", url: "post-8.html" },
+      { id: 9, title: "The Tuesday Flight Myth: 5 Real Booking Hacks That Actually Save on Airfare", category: "Travel", date: "Editor's Choice", image: "https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=800&q=80", url: "post-9.html" },
+      { id: 10, title: "4 Smart Kitchen Appliances That Cut My Weekly Food Waste to Zero", category: "Smart Living", date: "Verified", image: "https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&w=800&q=80", url: "post-10.html" },
+      { id: 11, title: "5 Energy-Saving Smart Home Gadgets That Lowered My Electric Bill", category: "Make Money", date: "Green Living", image: "https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=800&q=80", url: "post-11.html" },
+      { id: 12, title: "Ditching the $150 Gym Membership: The Complete Home Workout Blueprint", category: "Health & Fitness", date: "Recommended", image: "https://images.unsplash.com/photo-1517838277536-f5f99be501cd?auto=format&fit=crop&w=800&q=80", url: "post-12.html" },
+      { id: 13, title: "The High-Priced Kibble Trap: How to Feed Your Dog Like Royalty on a Budget", category: "Pet Care", date: "Nutrition Guide", image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=800&q=80", url: "post-13.html" },
+      { id: 14, title: "French Pharmacy Secrets: 4 Cult Skincare Staples Under $20 Dermatologists Actually Use", category: "Beauty", date: "Cult Favorite", image: "https://images.unsplash.com/photo-1608248597359-00966f7f2590?auto=format&fit=crop&w=800&q=80", url: "post-14.html" },
+      { id: 15, title: "5 Budget-Friendly Baby Gear Essentials That Every New Parent Needs", category: "Parenting", date: "Family Guide", image: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=800&q=80", url: "post-15.html" },
+      { id: 16, title: "Organic Baby Food on a Budget: How to Make Batch Purees at Home", category: "Parenting", date: "Nutrition", image: "https://images.unsplash.com/photo-1584824486509-112e4181ff6b?auto=format&fit=crop&w=800&q=80", url: "post-16.html" }
+    ];
+
+    // 获取网址里的关键词（例如 category.html?tag=pet）
+    var urlParams = new URLSearchParams(window.location.search);
+    var tag = urlParams.get('tag') || 'save';
+    var titleMap = {
+      'make': 'Make Money Articles',
+      'save': 'Save Money Articles',
+      'budget': 'Budgeting & Guides',
+      'pet': 'Pet Care & Essentials',
+      'beauty': 'Beauty & Skincare Dupes',
+      'parenting': 'Parenting & Baby Essentials'
+    };
+
+    document.getElementById("catTitle").textContent = titleMap[tag] || 'Articles Archive';
+
+    var filtered = ALL_POSTS.filter(function(p){
+      return p.category.toLowerCase().indexOf(tag) !== -1;
+    });
+
+    var grid = document.getElementById("catGrid");
+    if(filtered.length > 0) {
+      grid.innerHTML = filtered.map(function(item){
+        return '<article class="article-card">' +
+          '<a href="' + item.url + '" class="image-placeholder card-image" style="background: url(\'' + item.image + '\') center/cover no-repeat;">' +
+            '<span>' + item.category.toUpperCase() + '</span>' +
+          '</a>' +
+          '<h3 class="card-title"><a href="' + item.url + '">' + item.title + '</a></h3>' +
+          '<div class="card-meta">' + item.date + ' · ' + item.category + '</div>' +
+        '</article>';
+      }).join("");
+    } else {
+      grid.innerHTML = "<p>No articles found in this category yet.</p>";
+    }
+  </script>
+</body>
+</html>
