@@ -7,22 +7,32 @@
   <link rel="stylesheet" href="styles.css">
   <style>
     .archive-wrap { max-width: 1180px; margin: 40px auto 80px; padding: 0 20px; }
-    .archive-title { font-family: "Playfair Display", Georgia, serif; font-size: 36px; color: #26223f; margin-bottom: 30px; border-bottom: 2px solid #4b3c78; padding-bottom: 10px; text-transform: uppercase; }
-    .archive-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .archive-title { font-family: "Playfair Display", Georgia, serif; font-size: 34px; color: #26223f; margin-bottom: 25px; border-bottom: 2px solid #4b3c78; padding-bottom: 12px; text-transform: uppercase; }
+    .archive-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; min-height: 300px; }
+    .archive-grid .article-card .card-image { height: 180px !important; }
     @media(max-width: 900px) { .archive-grid { grid-template-columns: repeat(2, 1fr); } }
     @media(max-width: 600px) { .archive-grid { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
   <div class="top-strip"><span>SMARTER MONEY. MORE ROOM TO LIVE.</span><span class="top-links"><a href="index.html">← Back to Home</a></span></div>
-  <header class="site-header"><a class="brand" href="index.html"><span class="brand-mark">d</span><span class="brand-name"><b>DOCKED</b><span>LIFESTYLE</span></span></a></header>
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <span class="brand-mark">d</span>
+      <span class="brand-name"><b>DOCKED</b><span>LIFESTYLE</span></span>
+    </a>
+  </header>
 
   <main class="archive-wrap">
-    <h1 id="catTitle" class="archive-title">Category</h1>
-    <div class="archive-grid" id="catGrid"></div>
+    <h1 id="catTitle" class="archive-title">Articles Archive</h1>
+    <div class="archive-grid" id="catGrid">
+      <!-- 动态加载文章 -->
+    </div>
   </main>
 
-  <footer class="site-footer"><p>© 2026 Docked Lifestyle. All rights reserved.</p></footer>
+  <footer class="site-footer">
+    <p>© 2026 Docked Lifestyle. All rights reserved.</p>
+  </footer>
 
   <script>
     var ALL_POSTS = [
@@ -60,8 +70,14 @@
       { id: 32, title: "Best Pet Water Fountains: Save on Vet Bills by Boosting Hydration", category: "Pet Care", date: "Hydration", image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=800&q=80", url: "post-32.html" }
     ];
 
-    var urlParams = new URLSearchParams(window.location.search);
-    var tag = urlParams.get('tag') || 'save';
+    // 健壮参数解析：兼容不管是 ?tag=pet 还是 #tag=pet 甚至直接点进来
+    function getQueryParam(name) {
+      var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
+      return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
+    }
+
+    var tag = (getQueryParam('tag') || 'save').toLowerCase();
+
     var titleMap = {
       'make': 'Make Money Articles',
       'save': 'Save Money Articles',
@@ -71,15 +87,24 @@
       'parenting': 'Parenting & Baby Essentials'
     };
 
-    document.getElementById("catTitle").textContent = titleMap[tag] || 'Articles Archive';
+    var titleElem = document.getElementById("catTitle");
+    if (titleElem) {
+      titleElem.textContent = titleMap[tag] || 'Featured Articles Archive';
+    }
 
-    var filtered = ALL_POSTS.filter(function(p){
+    // 过滤出该分类的所有文章
+    var matchedPosts = ALL_POSTS.filter(function(p){
       return p.category.toLowerCase().indexOf(tag) !== -1;
     });
 
+    // 保底机制：如果没匹配到任何文章，默认显示前 6 篇热门文章，绝不留白！
+    if (!matchedPosts.length) {
+      matchedPosts = ALL_POSTS.slice(0, 6);
+    }
+
     var grid = document.getElementById("catGrid");
-    if(filtered.length > 0) {
-      grid.innerHTML = filtered.map(function(item){
+    if (grid) {
+      grid.innerHTML = matchedPosts.map(function(item){
         return '<article class="article-card">' +
           '<a href="' + item.url + '" class="image-placeholder card-image" style="background: url(\'' + item.image + '\') center/cover no-repeat;">' +
             '<span>' + item.category.toUpperCase() + '</span>' +
@@ -88,5 +113,7 @@
           '<div class="card-meta">' + item.date + ' · ' + item.category + '</div>' +
         '</article>';
       }).join("");
-    } else {
-      grid.i
+    }
+  </script>
+</body>
+</html>
