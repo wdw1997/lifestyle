@@ -19,15 +19,12 @@
 
   <main class="archive-wrap">
     <h1 id="catTitle" class="archive-title">Category</h1>
-    <div class="archive-grid" id="catGrid">
-      <!-- 动态加载文章 -->
-    </div>
+    <div class="archive-grid" id="catGrid"></div>
   </main>
 
   <footer class="site-footer"><p>© 2026 Docked Lifestyle. All rights reserved.</p></footer>
 
   <script>
-    // 引入全站文章数据
     var ALL_POSTS = [
       { id: 1, title: "The $7 Latte Trap: How I Saved $1,800 a Year Making Gourmet Coffee at Home", category: "Save Money", date: "Staff Pick", image: "https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80", url: "post-1.html" },
       { id: 2, title: "Meal Kits vs. Supermarket Groceries: The Real Math for Busy People", category: "Food & Budget", date: "Popular", image: "https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=800&q=80", url: "post-2.html" },
@@ -44,10 +41,23 @@
       { id: 13, title: "The High-Priced Kibble Trap: How to Feed Your Dog Like Royalty on a Budget", category: "Pet Care", date: "Nutrition Guide", image: "https://images.unsplash.com/photo-1589924691995-400dc9ecc119?auto=format&fit=crop&w=800&q=80", url: "post-13.html" },
       { id: 14, title: "French Pharmacy Secrets: 4 Cult Skincare Staples Under $20 Dermatologists Actually Use", category: "Beauty", date: "Cult Favorite", image: "https://images.unsplash.com/photo-1608248597359-00966f7f2590?auto=format&fit=crop&w=800&q=80", url: "post-14.html" },
       { id: 15, title: "5 Budget-Friendly Baby Gear Essentials That Every New Parent Needs", category: "Parenting", date: "Family Guide", image: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=800&q=80", url: "post-15.html" },
-      { id: 16, title: "Organic Baby Food on a Budget: How to Make Batch Purees at Home", category: "Parenting", date: "Nutrition", image: "https://images.unsplash.com/photo-1584824486509-112e4181ff6b?auto=format&fit=crop&w=800&q=80", url: "post-16.html" }
+      { id: 16, title: "Organic Baby Food on a Budget: How to Make Batch Purees at Home", category: "Parenting", date: "Nutrition", image: "https://images.unsplash.com/photo-1584824486509-112e4181ff6b?auto=format&fit=crop&w=800&q=80", url: "post-16.html" },
+      { id: 17, title: "The Debt-Free Blueprint: How Ordinary Families Crush Credit Card Balances Fast", category: "Budgeting", date: "Essential", image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80", url: "post-17.html" },
+      { id: 18, title: "The 5 Best Non-Toxic Baby Toys That Stimulate Development Without Screen Time", category: "Parenting", date: "Top Rated", image: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=800&q=80", url: "post-18.html" },
+      { id: 19, title: "The 5 Best Micro-Task & Freelance Platforms for Quick Weekend Cash", category: "Make Money", date: "Side Hustle", image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80", url: "post-19.html" },
+      { id: 20, title: "How to Flip Thrift Store Finds on eBay and Poshmark for a Profit", category: "Make Money", date: "Reselling", image: "https://images.unsplash.com/photo-1555529771-835f59fc5efe?auto=format&fit=crop&w=800&q=80", url: "post-20.html" },
+      { id: 21, title: "10 Clever Ways to Lower Your Monthly Utility and Grocery Bills", category: "Save Money", date: "Household", image: "https://images.unsplash.com/photo-1580933073521-dc3130935d2d?auto=format&fit=crop&w=800&q=80", url: "post-21.html" },
+      { id: 22, title: "The Ultimate Guide to Thrift Shopping & Secondhand Luxury in Europe", category: "Save Money", date: "Thrifting", image: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=800&q=80", url: "post-22.html" },
+      { id: 23, title: "Zero-Based Budgeting 101: How to Give Every Dollar a Job", category: "Budgeting", date: "Masterclass", image: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&w=800&q=80", url: "post-23.html" },
+      { id: 24, title: "How to Handle Irregular Income: A Budget Blueprint for Freelancers", category: "Budgeting", date: "Freelance", image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80", url: "post-24.html" },
+      { id: 25, title: "Natural Remedies for Dog Anxiety: Calming Noise Phobias and Separation Stress", category: "Pet Care", date: "Pet Wellness", image: "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=800&q=80", url: "post-25.html" },
+      { id: 26, title: "Pet Insurance Worth It? A Realistic Cost-Benefit Analysis for Owners", category: "Pet Care", date: "Analysis", image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=80", url: "post-26.html" },
+      { id: 27, title: "Clean Beauty on a Budget: 5 Safe Natural Skincare Brands Under $25", category: "Beauty", date: "Organic", image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80", url: "post-27.html" },
+      { id: 28, title: "How to Repair a Damaged Skin Barrier: The 3-Step Recovery Routine", category: "Beauty", date: "Derm Advice", image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80", url: "post-28.html" },
+      { id: 29, title: "Montessori at Home: Simple Ways to Set Up a Toddler-Friendly Play Space", category: "Parenting", date: "Education", image: "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=800&q=80", url: "post-29.html" },
+      { id: 30, title: "Picky Eater Solutions: Simple Mealtime Hacks for Toddlers Who Refuse Veggies", category: "Parenting", date: "Feeding Tips", image: "https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?auto=format&fit=crop&w=800&q=80", url: "post-30.html" }
     ];
 
-    // 获取网址里的关键词（例如 category.html?tag=pet）
     var urlParams = new URLSearchParams(window.location.search);
     var tag = urlParams.get('tag') || 'save';
     var titleMap = {
