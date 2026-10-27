@@ -16,23 +16,14 @@
 </head>
 <body>
   <div class="top-strip"><span>SMARTER MONEY. MORE ROOM TO LIVE.</span><span class="top-links"><a href="index.html">← Back to Home</a></span></div>
-  <header class="site-header">
-    <a class="brand" href="index.html">
-      <span class="brand-mark">d</span>
-      <span class="brand-name"><b>DOCKED</b><span>LIFESTYLE</span></span>
-    </a>
-  </header>
+  <header class="site-header"><a class="brand" href="index.html"><span class="brand-mark">d</span><span class="brand-name"><b>DOCKED</b><span>LIFESTYLE</span></span></a></header>
 
   <main class="archive-wrap">
     <h1 id="catTitle" class="archive-title">Articles Archive</h1>
-    <div class="archive-grid" id="catGrid">
-      <!-- 动态加载文章 -->
-    </div>
+    <div class="archive-grid" id="catGrid"></div>
   </main>
 
-  <footer class="site-footer">
-    <p>© 2026 Docked Lifestyle. All rights reserved.</p>
-  </footer>
+  <footer class="site-footer"><p>© 2026 Docked Lifestyle. All rights reserved.</p></footer>
 
   <script>
     var ALL_POSTS = [
@@ -56,21 +47,24 @@
       { id: 18, title: "The 5 Best Non-Toxic Baby Toys That Stimulate Development Without Screen Time", category: "Parenting", date: "Top Rated", image: "https://images.unsplash.com/photo-1596461404969-9ae70f2830c1?auto=format&fit=crop&w=800&q=80", url: "post-18.html" },
       { id: 19, title: "The 5 Best Micro-Task & Freelance Platforms for Quick Weekend Cash", category: "Make Money", date: "Side Hustle", image: "https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=800&q=80", url: "post-19.html" },
       { id: 20, title: "How to Flip Thrift Store Finds on eBay and Poshmark for a Profit", category: "Make Money", date: "Reselling", image: "https://images.unsplash.com/photo-1555529771-835f59fc5efe?auto=format&fit=crop&w=800&q=80", url: "post-20.html" },
-      { id: 21, title: "10 Clever Ways to Lower Your Monthly Utility and Grocery Bills", category: "Save Money", date: "Household", image: "https://images.unsplash.com/photo-1580933073521-dc3130935d2d?auto=format&fit=crop&w=800&q=80", url: "post-21.html" },
+      { id: 21, title: "10 Clever Ways to Lower Your Monthly Utility and Grocery Bills", category: "Save Money", date: "Household", image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80", url: "post-21.html" },
       { id: 22, title: "The Ultimate Guide to Thrift Shopping & Secondhand Luxury in Europe", category: "Save Money", date: "Thrifting", image: "https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?auto=format&fit=crop&w=800&q=80", url: "post-22.html" },
       { id: 23, title: "Zero-Based Budgeting 101: How to Give Every Dollar a Job", category: "Budgeting", date: "Masterclass", image: "https://images.unsplash.com/photo-1553729459-efe14ef6055d?auto=format&fit=crop&w=800&q=80", url: "post-23.html" },
       { id: 24, title: "How to Handle Irregular Income: A Budget Blueprint for Freelancers", category: "Budgeting", date: "Freelance", image: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80", url: "post-24.html" },
       { id: 25, title: "Natural Remedies for Dog Anxiety: Calming Noise Phobias and Separation Stress", category: "Pet Care", date: "Pet Wellness", image: "https://images.unsplash.com/photo-1537151608828-ea2b11777ee8?auto=format&fit=crop&w=800&q=80", url: "post-25.html" },
       { id: 26, title: "Pet Insurance Worth It? A Realistic Cost-Benefit Analysis for Owners", category: "Pet Care", date: "Analysis", image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=80", url: "post-26.html" },
       { id: 27, title: "Clean Beauty on a Budget: 5 Safe Natural Skincare Brands Under $25", category: "Beauty", date: "Organic", image: "https://images.unsplash.com/photo-1570172619644-dfd03ed5d881?auto=format&fit=crop&w=800&q=80", url: "post-27.html" },
-      { id: 28, title: "How to Repair a Damaged Skin Barrier: The 3-Step Recovery Routine", category: "Beauty", date: "Derm Advice", image: "https://images.unsplash.com/photo-1556228720-195a672e8a03?auto=format&fit=crop&w=800&q=80", url: "post-28.html" },
+      { id: 28, title: "How to Repair a Damaged Skin Barrier: The 3-Step Recovery Routine", category: "Beauty", date: "Derm Advice", image: "https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?auto=format&fit=crop&w=800&q=80", url: "post-28.html" },
       { id: 29, title: "Montessori at Home: Simple Ways to Set Up a Toddler-Friendly Play Space", category: "Parenting", date: "Education", image: "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=800&q=80", url: "post-29.html" },
       { id: 30, title: "Picky Eater Solutions: Simple Mealtime Hacks for Toddlers Who Refuse Veggies", category: "Parenting", date: "Feeding Tips", image: "https://images.unsplash.com/photo-1476718406336-bb5a9690ee2a?auto=format&fit=crop&w=800&q=80", url: "post-30.html" },
       { id: 31, title: "The Ultimate Guide to Pet Food and Supplies: How to Choose the Best Products for Your Dog or Cat", category: "Pet Care", date: "Buying Guide", image: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&w=800&q=80", url: "post-31.html" },
-      { id: 32, title: "Best Pet Water Fountains: Save on Vet Bills by Boosting Hydration", category: "Pet Care", date: "Hydration", image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=800&q=80", url: "post-32.html" }
+      { id: 32, title: "Best Pet Water Fountains: Save on Vet Bills by Boosting Hydration", category: "Pet Care", date: "Hydration", image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&w=800&q=80", url: "post-32.html" },
+      { id: 33, title: "The Frugal Minimalist: 7 Daily Spending Habits That Save $500 a Month", category: "Save Money", date: "Habits", image: "https://images.unsplash.com/photo-1484480974693-6ca0a78fb36b?auto=format&fit=crop&w=800&q=80", url: "post-33.html" },
+      { id: 34, title: "Freezer Meal Prep 101: Cook Once, Eat for Two Weeks and Slash Food Bills", category: "Save Money", date: "Meal Prep", image: "https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=800&q=80", url: "post-34.html" },
+      { id: 35, title: "The Cash Envelope System: How Physical Money Stops Overspending", category: "Budgeting", date: "Cash System", image: "https://images.unsplash.com/photo-1579621970563-ebec7560ff3e?auto=format&fit=crop&w=800&q=80", url: "post-35.html" },
+      { id: 36, title: "The 50/30/20 Budget Rule: The Simplest Framework for Financial Peace", category: "Budgeting", date: "Framework", image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80", url: "post-36.html" }
     ];
 
-    // 健壮参数解析：兼容不管是 ?tag=pet 还是 #tag=pet 甚至直接点进来
     function getQueryParam(name) {
       var match = RegExp('[?&]' + name + '=([^&]*)').exec(window.location.search);
       return match && decodeURIComponent(match[1].replace(/\+/g, ' '));
@@ -92,12 +86,10 @@
       titleElem.textContent = titleMap[tag] || 'Featured Articles Archive';
     }
 
-    // 过滤出该分类的所有文章
     var matchedPosts = ALL_POSTS.filter(function(p){
       return p.category.toLowerCase().indexOf(tag) !== -1;
     });
 
-    // 保底机制：如果没匹配到任何文章，默认显示前 6 篇热门文章，绝不留白！
     if (!matchedPosts.length) {
       matchedPosts = ALL_POSTS.slice(0, 6);
     }
